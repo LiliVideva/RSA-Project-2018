@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Built-By: i330536
+Class-Path: lib/commons-cli-1.2.jar
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_112
+Main-Class: bg.uni.sofia.fmi.rsa.matrix.multiplication.Test
+
