@@ -22,10 +22,13 @@ import javax.swing.border.EmptyBorder;
 import org.apache.commons.cli.ParseException;
 
 public class MatrixMultiplicatorGui extends JFrame {
+	
+	public static final long serialVersionUID = 1;
 
 	private JPanel contentPane;
 	private JTextField matrixARows;
-	private JTextField matrixAColumnsBRows;
+	private JTextField matrixAColumns;
+	private JTextField matrixBRows;
 	private JTextField matrixBColumns;
 	private JTextField inputFile;
 	private JTextField outputFile;
@@ -34,129 +37,146 @@ public class MatrixMultiplicatorGui extends JFrame {
 	public MatrixMultiplicatorGui() {
 		setTitle("Matrix Multiplicator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 745, 538);
+		setBounds(100, 100, 850, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setBackground(Color.WHITE);
-
+		
 		matrixARows = new JTextField();
 		matrixARows.setHorizontalAlignment(SwingConstants.CENTER);
-		matrixARows.setBounds(450, 43, 215, 31);
+		matrixARows.setBounds(250, 70, 150, 30);
 		contentPane.add(matrixARows);
 		matrixARows.setColumns(3);
 
-		matrixAColumnsBRows = new JTextField();
-		matrixAColumnsBRows.setHorizontalAlignment(SwingConstants.CENTER);
-		matrixAColumnsBRows.setBounds(450, 92, 215, 33);
-		contentPane.add(matrixAColumnsBRows);
-		matrixAColumnsBRows.setColumns(3);
-
+		matrixAColumns = new JTextField();
+		matrixAColumns.setHorizontalAlignment(SwingConstants.CENTER);
+		matrixAColumns.setBounds(250, 120, 150, 30);
+		contentPane.add(matrixAColumns);
+		matrixAColumns.setColumns(3);
+		
+		matrixBRows = new JTextField();
+		matrixBRows.setHorizontalAlignment(SwingConstants.CENTER);
+		matrixBRows.setBounds(620, 70, 150, 30);
+		contentPane.add(matrixBRows);
+		matrixBRows.setColumns(3);
+		
 		matrixBColumns = new JTextField();
 		matrixBColumns.setHorizontalAlignment(SwingConstants.CENTER);
-		matrixBColumns.setBounds(450, 148, 215, 31);
+		matrixBColumns.setBounds(620, 120, 150, 30);
 		contentPane.add(matrixBColumns);
 		matrixBColumns.setColumns(3);
 
 		inputFile = new JTextField();
 		inputFile.setHorizontalAlignment(SwingConstants.CENTER);
-		inputFile.setBounds(450, 201, 215, 31);
+		inputFile.setBounds(250, 200, 150, 30);
 		contentPane.add(inputFile);
 		inputFile.setColumns(30);
 
 		outputFile = new JTextField();
 		outputFile.setHorizontalAlignment(SwingConstants.CENTER);
-		outputFile.setBounds(450, 260, 215, 33);
+		outputFile.setBounds(620, 200, 150, 30);
 		contentPane.add(outputFile);
 		outputFile.setColumns(30);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.GRAY);
-		panel_1.setBounds(79, 43, 333, 31);
+		panel_1.setBounds(50, 70, 190, 30);
+		panel_1.setBackground(Color.BLUE);
 		contentPane.add(panel_1);
 		
-				JLabel matrixARowsLabel = new JLabel("Matrix A Rows");
-				panel_1.add(matrixARowsLabel);
-				matrixARowsLabel.setForeground(Color.WHITE);
-				matrixARowsLabel.setFont(new Font("Rockwell Condensed", Font.BOLD, 17));
-
+		JLabel matrixARowsLabel = new JLabel("Rows in matrix A");
+		matrixARowsLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		matrixARowsLabel.setForeground(Color.WHITE);
+		panel_1.add(matrixARowsLabel);
+		
 		JLabel label = new JLabel("");
 		panel_1.add(label);
 
 		JLabel result_Label = new JLabel("");
-		result_Label.setFont(new Font("Rockwell Condensed", Font.PLAIN, 30));
-		result_Label.setBounds(204, 441, 430, 58);
+		result_Label.setFont(new Font("Calibri", Font.BOLD, 30));
+		result_Label.setBounds(350, 350, 300, 30);
 		contentPane.add(result_Label);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.GRAY);
-		panel_4.setBounds(77, 92, 335, 31);
+		panel_4.setBounds(50, 120, 190, 30);
+		panel_4.setBackground(Color.BLUE);
 		contentPane.add(panel_4);
 		
-		JLabel matrixAColumnsBRowsLabel = new JLabel("Matrix A Columns & Matrix B Rows");
-		panel_4.add(matrixAColumnsBRowsLabel);
-		matrixAColumnsBRowsLabel.setBackground(Color.GRAY);
-		matrixAColumnsBRowsLabel.setForeground(Color.WHITE);
-		matrixAColumnsBRowsLabel.setFont(new Font("Rockwell Condensed", Font.BOLD, 17));
+		JLabel matrixAColumnsLabel = new JLabel("Columns in matrix A");
+		matrixAColumnsLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		matrixAColumnsLabel.setForeground(Color.WHITE);
+		panel_4.add(matrixAColumnsLabel);
 		
 		JLabel label_2 = new JLabel("");
 		panel_4.add(label_2);
 		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBounds(420, 70, 190, 30);
+		panel_10.setBackground(Color.BLUE);
+		contentPane.add(panel_10);
+		
+		JLabel matrixBRowsLabel = new JLabel("Rows in matrix B");
+		matrixBRowsLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		matrixBRowsLabel.setForeground(Color.WHITE);
+		panel_10.add(matrixBRowsLabel);
+		
+		JLabel label_10 = new JLabel("");
+		panel_10.add(label_10);
+		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Color.GRAY);
-		panel_5.setBounds(77, 148, 335, 31);
+		panel_5.setBounds(420, 120, 190, 30);
+		panel_5.setBackground(Color.BLUE);
 		contentPane.add(panel_5);
 		
-		JLabel label_1 = new JLabel("Matrix B Columns");
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Dialog", Font.BOLD, 17));
-		panel_5.add(label_1);
+		JLabel matrixBColumnsLabel = new JLabel("Columns in matrix B");
+		matrixBColumnsLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+		matrixBColumnsLabel.setForeground(Color.WHITE);
+		panel_5.add(matrixBColumnsLabel);
 		
 		JLabel label_3 = new JLabel("");
 		panel_5.add(label_3);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.GRAY);
-		panel.setBounds(79, 203, 335, 31);
+		panel.setBounds(50, 200, 190, 30);
+		panel.setBackground(Color.GREEN);
 		contentPane.add(panel);
 		
-		JLabel inputFileLabel = new JLabel("Input File");
+		JLabel inputFileLabel = new JLabel("Input file");
+		inputFileLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		panel.add(inputFileLabel);
-		inputFileLabel.setForeground(Color.WHITE);
-		inputFileLabel.setFont(new Font("Rockwell Condensed", Font.BOLD, 17));
 		
 		JLabel label_5 = new JLabel("");
 		panel.add(label_5);
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(Color.GRAY);
-		panel_6.setBounds(79, 262, 335, 31);
+		panel_6.setBounds(420, 200, 190, 30);
+		panel_6.setBackground(Color.GREEN);
 		contentPane.add(panel_6);
 		
-		JLabel outputFileLabel = new JLabel("Output File");
+		JLabel outputFileLabel = new JLabel("Output file");
 		panel_6.add(outputFileLabel);
-		outputFileLabel.setForeground(Color.WHITE);
-		outputFileLabel.setFont(new Font("Rockwell Condensed", Font.BOLD, 17));
+		outputFileLabel.setFont(new Font("Calibri", Font.BOLD, 20));
 		
 		JLabel label_6 = new JLabel("");
 		panel_6.add(label_6);
 		
 		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(Color.GRAY);
-		panel_7.setBounds(79, 321, 335, 31);
+		panel_7.setBounds(50, 280, 190, 30);
+		panel_7.setBackground(Color.RED);
 		contentPane.add(panel_7);
 		
 		JLabel lblThreads = new JLabel("Threads");
+		lblThreads.setFont(new Font("Calibri", Font.BOLD, 20));
 		lblThreads.setForeground(Color.WHITE);
-		lblThreads.setFont(new Font("Dialog", Font.BOLD, 17));
 		panel_7.add(lblThreads);
 		
 		JLabel label_8 = new JLabel("");
 		panel_7.add(label_8);
 		
 				JButton btnCalculate = new JButton("Multiply");
-				btnCalculate.setBounds(324, 384, 129, 45);
+				btnCalculate.setBounds(620, 280, 150, 40);
+				btnCalculate.setFont(new Font("Calibri", Font.PLAIN, 30));
 				contentPane.add(btnCalculate);
 				btnCalculate.setToolTipText("Multiply matrixes");
 				btnCalculate.addMouseListener(new MouseListener() {
@@ -187,15 +207,21 @@ public class MatrixMultiplicatorGui extends JFrame {
 					
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if (( inputFile.getText().equals("") && (matrixARows.getText().equals("") || matrixAColumnsBRows.getText().equals(""))
-								|| matrixBColumns.getText().equals(""))) {
+						if (inputFile.getText().equals("") && (matrixARows.getText().equals("") || matrixAColumns.getText().equals("")
+								|| matrixBRows.getText().equals("") || matrixBColumns.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please, fill the required fields.");
+							return;
+						}
+						
+						if(!matrixAColumns.getText().equals("") && !matrixBRows.getText().equals("") && !matrixBRows.getText().equals(matrixAColumns.getText()))
+						{
+							JOptionPane.showMessageDialog(null, "Please, enter the same number of rows in B as number of columns in A.");
 							return;
 						}
 
 						try {
 							String matrixARowsCount = matrixARows.getText();
-							String matrixAColumnsBRowsCount = matrixAColumnsBRows.getText();
+							String matrixAColumnsBRowsCount = matrixAColumns.getText();
 							String matrixBColumnsCount = matrixBColumns.getText();
 							String inputFilename = inputFile.getText();
 							String outputFilename = outputFile.getText();
@@ -207,9 +233,9 @@ public class MatrixMultiplicatorGui extends JFrame {
 								if (builder.build()) {
 									//System.out.println(builder.getMatrixA());
 									//System.out.println(builder.getMatrixB());
-									MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser);
+									MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser, true);
 									long result = multiplicator.multiply();
-									result_Label.setText("Result: " +  result + " mills.Hooray! ");
+									result_Label.setText("Execution time: " +  result + " mills. ");
 								}
 							}catch (IOException ex) {
 								System.err.println("Error while reading input file: " + ex.getMessage());
@@ -219,7 +245,7 @@ public class MatrixMultiplicatorGui extends JFrame {
 								System.err.println("Error while parsing an argument: " + ex.getMessage());
 							}
 						} catch (IllegalArgumentException exc) {
-							JOptionPane.showMessageDialog(null, "Not valid kilograms.");
+							JOptionPane.showMessageDialog(null, "Not valid arguments.");
 							return;
 						}
 						
@@ -266,15 +292,21 @@ public class MatrixMultiplicatorGui extends JFrame {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-							if (( inputFile.getText().equals("") && (matrixARows.getText().equals("") || matrixAColumnsBRows.getText().equals(""))
-									|| matrixBColumns.getText().equals(""))) {
+							if (inputFile.getText().equals("") && (matrixARows.getText().equals("") || matrixAColumns.getText().equals("")
+									|| matrixBRows.getText().equals("") || matrixBColumns.getText().equals(""))) {
 								JOptionPane.showMessageDialog(null, "Please, fill the required fields.");
+								return;
+							}
+							
+							if(!matrixAColumns.getText().equals("") && !matrixBRows.getText().equals("") && !matrixBRows.getText().equals(matrixAColumns.getText()))
+							{
+								JOptionPane.showMessageDialog(null, "Please, enter the same number of rows in B as number of columns in A.");
 								return;
 							}
 
 							try {
 								String matrixARowsCount = matrixARows.getText();
-								String matrixAColumnsBRowsCount = matrixAColumnsBRows.getText();
+								String matrixAColumnsBRowsCount = matrixAColumns.getText();
 								String matrixBColumnsCount = matrixBColumns.getText();
 								String inputFilename = inputFile.getText();
 								String outputFilename = outputFile.getText();
@@ -284,11 +316,9 @@ public class MatrixMultiplicatorGui extends JFrame {
 								MatrixesBuilder builder = new MatrixesBuilder(parser);
 								try {
 									if (builder.build()) {
-										//System.out.println(builder.getMatrixA());
-										//System.out.println(builder.getMatrixB());
-										MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser);
+										MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser, true);
 										long result = multiplicator.multiply();
-										result_Label.setText("Result: " +  result + " mills.Hooray! ");
+										result_Label.setText("Execution time: " +  result + " mills.");
 									}
 								}catch (IOException ex) {
 									System.err.println("Error while reading input file: " + ex.getMessage());
@@ -298,7 +328,7 @@ public class MatrixMultiplicatorGui extends JFrame {
 									System.err.println("Error while parsing an argument: " + ex.getMessage());
 								}
 							} catch (IllegalArgumentException exc) {
-								JOptionPane.showMessageDialog(null, "Not valid kilograms.");
+								JOptionPane.showMessageDialog(null, "Not valid arguments.");
 								return;
 							}
 						}
@@ -351,18 +381,18 @@ public class MatrixMultiplicatorGui extends JFrame {
 
 					}
 				});
-				btnCalculate.setFont(new Font("Segoe Marker", Font.PLAIN, 17));
+				btnCalculate.setFont(new Font("Calibri", Font.BOLD, 20));
 				
 				threads = new JTextField();
 				threads.setHorizontalAlignment(SwingConstants.CENTER);
 				threads.setColumns(30);
-				threads.setBounds(450, 321, 215, 33);
+				threads.setBounds(250, 280, 150, 30);
 				contentPane.add(threads);
 				
 				JLabel lblMatrixMultiplicator = new JLabel("Matrix Multiplicator");
-				lblMatrixMultiplicator.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+				lblMatrixMultiplicator.setFont(new Font("Calibri", Font.BOLD, 30));
 				lblMatrixMultiplicator.setHorizontalAlignment(SwingConstants.CENTER);
-				lblMatrixMultiplicator.setBounds(280, 6, 242, 25);
+				lblMatrixMultiplicator.setBounds(280, 10, 300, 40);
 				contentPane.add(lblMatrixMultiplicator);
 	}
 }

@@ -9,10 +9,12 @@ public class MultithreadedMatrixesMultiplier {
 
 	private ExecutorService executor;
 	private int threadsNumber;
+	private boolean printDetails;
 	
-	public MultithreadedMatrixesMultiplier(int threadsNumber) {
+	public MultithreadedMatrixesMultiplier(int threadsNumber, boolean printDetails) {
 		executor = Executors.newFixedThreadPool(threadsNumber);
 		this.threadsNumber = threadsNumber;
+		this.printDetails = printDetails;
 		
 	}
 
@@ -23,7 +25,7 @@ public class MultithreadedMatrixesMultiplier {
 			reservedRows[j] = new AtomicBoolean(false);
 		}
 		for (int i = 0; i < threadsNumber; i++) {
-			executor.submit(new MultithreadedMultiplyTask(matrixA, matrixB, resultMatrix, reservedRows));
+			executor.submit(new MultithreadedMultiplyTask(matrixA, matrixB, resultMatrix, reservedRows, this.printDetails));
 		}
 		
 		try {

@@ -29,6 +29,7 @@ public class ArgumentsParser {
         options.addOption(Option.builder().longOpt("i").argName("i").hasArg().numberOfArgs(1).type(String.class).build());
         options.addOption(Option.builder().longOpt("t").argName("t").hasArg().numberOfArgs(1).type(Integer.class).build());
         options.addOption(Option.builder().longOpt("o").argName("o").hasArg().numberOfArgs(1).type(String.class).build());
+        options.addOption(Option.builder().longOpt("q").argName("q").build());
         options.addOption(Option.builder().longOpt("desktop").argName("desktop").build());
         
     }

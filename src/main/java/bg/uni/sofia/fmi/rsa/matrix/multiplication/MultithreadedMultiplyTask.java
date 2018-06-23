@@ -9,12 +9,14 @@ public class MultithreadedMultiplyTask implements Callable<long[][]> {
 	private long[][] matrixB;
 	private long[][] resultMatrix;
 	private AtomicBoolean[] reservedRows;
+	private boolean printDetails;
 	
-	public MultithreadedMultiplyTask(Matrix matrixA, Matrix matrixB, long[][] resultMatrix, AtomicBoolean[] reservedRows) {
+	public MultithreadedMultiplyTask(Matrix matrixA, Matrix matrixB, long[][] resultMatrix, AtomicBoolean[] reservedRows, boolean printDetails) {
 		this.matrixA = matrixA.getMatrix();
 		this.matrixB = matrixB.getMatrix();
 		this.resultMatrix = resultMatrix;
 		this.reservedRows = reservedRows;
+		this.printDetails = printDetails;
 	}
 
 	@Override
@@ -22,15 +24,21 @@ public class MultithreadedMultiplyTask implements Callable<long[][]> {
 		long startTime = System.currentTimeMillis();
 		for (int i = 0; i < matrixA.length; i++) {
 			if (reservedRows[i].compareAndSet(false, true)) {
+				if (printDetails) {
 				System.out.println(Thread.currentThread().getName() + " processing row: " + i);
+				}
 				for (int j = 0; j < matrixB[0].length; j++) {
+					long res=0;
 					for (int k = 0; k < matrixA[0].length; k++) {
-						resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
+						res += matrixA[i][k] * matrixB[k][j];
 					}
+				resultMatrix[i][j]=res;
 				}
 			}
 		}
-		System.out.println(Thread.currentThread().getName() + " finished for: " + (System.currentTimeMillis() - startTime) + " mills.");
+		if (printDetails) {
+			System.out.println(Thread.currentThread().getName() + " finished for: " + (System.currentTimeMillis() - startTime) + " mills.");
+		}
 		return resultMatrix;
 	}
 

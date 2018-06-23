@@ -16,10 +16,15 @@ public class MultiplicatorStarter {
 	
 	public void start(){
 		List<String> argsList = Arrays.asList(args);
-		if (argsList.contains("-desktop")) {
-			startGui();
-		} else{
-			startConsole();
+		if(argsList.contains("-q")) {
+			startConsole(false);
+		}
+		else {
+			if (argsList.contains("-desktop")) {
+				startGui();
+			} else{
+				startConsole(true);
+			}
 		}
 	}
 
@@ -37,14 +42,14 @@ public class MultiplicatorStarter {
 		});		
 	}
 
-	private void startConsole() {
+	private void startConsole(boolean printDetails) {
 		ArgumentsParser parser = new ArgumentsParser(args);
 		MatrixesBuilder builder = new MatrixesBuilder(parser);
 		try {
 			if (builder.build()) {
-				MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser);
+				MatrixesMultiplicator multiplicator = new MatrixesMultiplicator(parser, printDetails);
 				long result = multiplicator.multiply();
-				System.out.println("Result: " +  result + ".Hooray! ");
+				System.out.println("Execution time: " +  result + " mills.");
 			}
 		}catch (IOException e) {
 			System.err.println("Error while reading input file: " + e.getMessage());
